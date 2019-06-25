@@ -1,0 +1,18 @@
+.container-fluid{
+    background-color: black;
+    color: white;
+    padding-top: 1.5%;
+    height: 4%;
+}
+
+#portafolio{
+    text-align: center;
+}
+
+.nav-link{
+    color: #ffdd4c;
+}
+
+#addPortafolio{
+    
+}

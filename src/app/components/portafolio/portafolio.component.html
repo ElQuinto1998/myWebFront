@@ -1,3 +1,25 @@
-<p>
-  portafolio works!
-</p>
+<div class="container-fluid">
+  <h1 id="portafolio">Portafolio</h1>
+  <nav class="navbar navbar-expand-sm bg-black navbar-black">
+    <ul class="navbar-nav mx-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="portafolio/videos">Videos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="portafolio/imagenes">Fotos</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" routerLink="portafolio/articulos">Artículos</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="portafolio/proyectos">Proyectos</a>
+          </li>
+    </ul>
+  </nav>
+  <div class="row mt-5" id="addPortafolio">
+    <div class="col-md-12">
+      <h4>Aqui se cargan los componentes para cada item del portafolio</h4>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
