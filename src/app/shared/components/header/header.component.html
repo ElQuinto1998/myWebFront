@@ -19,7 +19,7 @@
             <a class="nav-link" (click)="scrollToElement(portafolio)">Portafolio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Galeria</a>
+            <a class="nav-link" (click)="scrollToElement(contacto)">Contacto</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Conóceme</a>
@@ -54,4 +54,7 @@
 </header>
 <div #portafolio>
     <app-portafolio></app-portafolio>
+</div>
+<div #contacto>
+  <app-contacto></app-contacto>
 </div>

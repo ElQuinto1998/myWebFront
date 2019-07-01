@@ -9,6 +9,8 @@ import { ImagesComponent } from './components/addPortafolio/images/images.compon
 import { ArticuloComponent } from './components/addPortafolio/articulo/articulo.component';
 import { ProyectoComponent } from './components/addPortafolio/proyecto/proyecto.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ContactoComponent } from './components/contacto/contacto.component';
+import { AboutComponent } from './components/about/about.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { AppRoutingModule } from './app-routing.module';
     VideoComponent,
     ImagesComponent,
     ArticuloComponent,
-    ProyectoComponent
+    ProyectoComponent,
+    ContactoComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
