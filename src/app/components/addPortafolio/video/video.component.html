@@ -82,7 +82,7 @@
 	</li>
 </ul>
 
-<!-- Modal -->
+<!-- Modal videos-->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="color: #000">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -93,15 +93,80 @@
         </button>
       </div>
       <div class="modal-body">
-        <h3>Hola</h3>
-        <video width="765" height="450" loop autoplay controls style="padding-bottom: 120px">
+        <video width="765" height="450" loop autoplay controls style="padding-bottom: 5px">
           <source src="https://pixabay.com/es/videos/download/video-2317_source.mp4" type="video/mp4">
       </video>
+        <div class="">
+          <ul class="navbar-nav nav-flex-icons">
+            <li class="nav-item" style="cursor:pointer">
+              <a id="like" (click)="sumarLike(mensaje)" style="font-size: 35px" target="_blank" class="fa fa-heart"></a>
+            </li>
+            <li>
+              <h3 style="padding-left: 6px">{{likes}}</h3>
+            </li>
+          </ul>
+        </div>
+        <!-- Comentarios -->
+        <div class="comments-container">
+          <h5>Comentarios</h5>
+          <ul id="comments-list" class="comments-list">
+            <li>
+              <div class="comment-main-level">
+                <!-- Avatar -->
+                <div class="comment-avatar"><img src="https://image.freepik.com/vector-gratis/perfil-avatar-hombre-icono-redondo_24640-14044.jpg" alt=""></div>
+                <!-- Contenedor del Comentario -->
+                <div class="comment-box">
+                  <div class="comment-head">
+                    <h6 class="comment-name by-author"><a href="http://creaticode.com/blog">Agustin Ortiz</a></h6>
+                    <span>hace 20 minutos</span>
+                    <i class="fa fa-reply"></i>
+                    <i class="fa fa-heart"></i>
+                  </div>
+                  <div class="comment-content">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
+                  </div>
+                </div>
+              </div>
+
+            </li>
+            <li>
+              <div class="comment-main-level">
+                <!-- Avatar -->
+                <div class="comment-avatar"><img src="https://image.freepik.com/vector-gratis/perfil-avatar-hombre-icono-redondo_24640-14044.jpg" alt=""></div>
+                <!-- Contenedor del Comentario -->
+                <div class="comment-box">
+                  <div class="comment-head">
+                    <h6 class="comment-name by-author"><a href="http://creaticode.com/blog">Andres Quinto</a></h6>
+                    <span>hace 50 minutos</span>
+                    <i class="fa fa-reply"></i>
+                    <i class="fa fa-heart"></i>
+                  </div>
+                  <div class="comment-content">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
+                  </div>
+                </div>
+              </div>
+
+            </li>
+          </ul>
+          <div class="comment-main-level">
+            <div class="comment-box">
+              <div class="comment-content">
+                <div class="form-group shadow-textarea">
+                  <textarea class="form-control z-depth-1" id="txtComent" rows="3" required placeholder="Escribe un comentario..."></textarea>
+                  <button type="submit" (click)="comentar()" class="btn btn-primary">Comentar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+        <!-- Comentarios -->
+
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <!-- <button type="button" class="btn btn-primary">Save changes</button>-->
       </div>
     </div>
   </div>
 </div>
+<!-- Modal videos -->
