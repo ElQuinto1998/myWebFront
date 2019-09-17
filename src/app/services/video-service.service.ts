@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Video } from '../shared/models/video';
 import { Observable, throwError } from 'rxjs';
-import { retry, catchError } from 'rxjs/operators';
+import {retry, catchError, tap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -20,11 +20,18 @@ export class VideoServiceService {
   };
 
   getVideos(): Observable<Video> {
-    return this.http.get<Video>(this.URL_API + '/videos')
+    return this.http.get<Video>(this.URL_API + '/videos', this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.handleError)
       );
+  }
+
+  getVideoById(id: string): Observable<Video> {
+    return this.http.get<Video>(this.URL_API + '/videos/' + id).pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
   }
 
   handleError(error) {
