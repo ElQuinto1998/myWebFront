@@ -1,15 +1,19 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { ImagesComponent } from '../app/components/addPortafolio/images/images.component';
-import { VideoComponent } from '../app/components/addPortafolio/video/video.component';
-import { ProyectoComponent } from '../app/components/addPortafolio/proyecto/proyecto.component';
-import { ArticuloComponent } from '../app/components/addPortafolio/articulo/articulo.component';
+import { ImagesComponent } from './components/addPortafolio/images/images.component';
+import { VideoComponent } from './components/addPortafolio/video/video.component';
+import { ProyectoComponent } from './components/addPortafolio/proyecto/proyecto.component';
+import { ArticuloComponent } from './components/addPortafolio/articulo/articulo.component';
+import { VideoDetailComponent } from './components/addPortafolio/video-detail/video-detail.component';
 
 const routes: Routes = [
   {
     path: 'portafolio/videos',
     component: VideoComponent
+  },
+  {
+    path: 'portafolio/videos/detail/:id',
+    component: VideoDetailComponent
   },
   {
     path: 'portafolio/imagenes',

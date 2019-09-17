@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Video } from '../shared/models/video';
 import { Observable, throwError } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
-import {retry, catchError, tap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'

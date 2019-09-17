@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { VideoServiceService } from '../../../services/video-service.service';
 
 @Component({
   selector: 'app-video',
@@ -7,29 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VideoComponent implements OnInit {
 
-  mensaje = 'Video para aumentar like';
-  likes: any = 0;
+  data: any = [];
 
-  constructor() { }
+  constructor(private toastr: ToastrService, private service: VideoServiceService) { }
 
   ngOnInit() {
+    this.getVideos();
   }
 
-  sumarLike(video): void {
-    document.getElementById('like').style.color = '#ff0000';
-    this.likes += 1;
+  getVideos(){
+    return this.service.getVideos().subscribe(data => {
+      this.data = data;
+    }, (error => {
+      this.toastr.error("Hubo un problema, intente mas tarde");
+    }));
   }
 
-  comentar(): void {
-
-    // tslint:disable-next-line:prefer-const
-    let comentario = document.getElementById('txtComent') as HTMLInputElement;
-
-    if (comentario.value === '') {
-      alert('Debes escribir un comentario');
-    } else {
-      alert('Comentario guardado');
-    }
-  }
 
 }

@@ -1,0 +1,72 @@
+<div class="row justify-content-md-center">
+  <div class="col-md-8">
+    <div class="card ">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h2>{{data.video.title}}</h2>
+        <button class="btn btn-danger" routerLink="/portafolio/videos" id="btn-delete">
+          <i class="fa fa-times"></i>
+        </button>
+      </div>
+      <div class="card-body">
+        <div class="text-center">
+          <video width="765" height="450" loop autoplay controls style="padding-bottom: 5px">
+            <source src="https://pixabay.com/es/videos/download/video-2317_source.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <div class="card-footer d-flex justify-content-between align-items-center">
+        <button class="btn btn-success" id="btn-like">
+          <i class="fa fa-thumbs-up"></i> Like
+        </button>
+        <p>
+          <span class="likes-count">{{data.video.likes}}</span>
+          <i class="fa fa-heart"></i>
+        </p>
+        <p>
+          <i class="fa fa-eye"></i> {{data.video.views}}
+        </p>
+        <p>
+          <i class="fa fa-clock"></i>
+          {{data.video.timestamp}}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Comentarios -->
+<div class="comments-container">
+  <h5>Comentarios</h5>
+  <p *ngIf="!comts">- Sin comentarios</p>
+  <ul id="comments-list" class="comments-list" *ngIf="comts">
+    <li *ngFor="let comment of data.comments">
+      <div class="comment-main-level">
+        <!-- Avatar -->
+        <div class="comment-avatar"><img src="https://image.freepik.com/vector-gratis/perfil-avatar-hombre-icono-redondo_24640-14044.jpg" alt=""></div>
+        <!-- Contenedor del Comentario -->
+        <div class="comment-box">
+          <div class="comment-head">
+            <h6 class="comment-name by-author"><a href="http://creaticode.com/blog">Agustin Ortiz</a></h6>
+            <span>hace 20 minutos</span>
+            <i class="fa fa-reply"></i>
+            <i class="fa fa-heart"></i>
+          </div>
+          <div class="comment-content">
+            {{comment.message}}
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <div class="comment-main-level">
+    <div class="comment-box">
+      <div class="comment-content">
+        <div class="form-group shadow-textarea">
+          <textarea class="form-control z-depth-1" id="txtComent" rows="3" required placeholder="Escribe un comentario..."></textarea>
+          <button type="submit" class="btn btn-primary">Comentar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Comentarios -->

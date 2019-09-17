@@ -1,5 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import {HttpClientModule} from '@angular/common/http';
+
+
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/components/header/header.component';
@@ -11,6 +16,7 @@ import { ProyectoComponent } from './components/addPortafolio/proyecto/proyecto.
 import { AppRoutingModule } from './app-routing.module';
 import { ContactoComponent } from './components/contacto/contacto.component';
 import { AboutComponent } from './components/about/about.component';
+import { VideoDetailComponent } from './components/addPortafolio/video-detail/video-detail.component';
 
 @NgModule({
   declarations: [
@@ -22,11 +28,15 @@ import { AboutComponent } from './components/about/about.component';
     ArticuloComponent,
     ProyectoComponent,
     ContactoComponent,
-    AboutComponent
+    AboutComponent,
+    VideoDetailComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

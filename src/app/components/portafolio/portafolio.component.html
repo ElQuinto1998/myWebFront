@@ -2,17 +2,53 @@
   <h1 id="portafolio">Portafolio</h1>
   <nav class="navbar navbar-expand-sm bg-black navbar-black">
     <ul class="navbar-nav mx-auto">
-      <li class="nav-item">
-        <a class="nav-link" routerLink="portafolio/videos">Videos</a>
+      <li class="nav-item pr-3">
+        <!--<a class="nav-link" routerLink="portafolio/videos">Videos</a>-->
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle itm" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Videos
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <button class="dropdown-item" routerLink="portafolio/videos" type="button">Listar</button>
+            <button class="dropdown-item" routerLink="portafolio/videos/upload" type="button">Crear</button>
+          </div>
+        </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="portafolio/imagenes">Fotos</a>
+      <li class="nav-item pr-3">
+        <!--<a class="nav-link" routerLink="portafolio/imagenes">Fotos</a>-->
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle itm" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Imagenes
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <button class="dropdown-item" routerLink="portafolio/imagenes" type="button">Listar</button>
+            <button class="dropdown-item" routerLink="portafolio/imagenes/upload" type="button">Crear</button>
+          </div>
+        </div>
       </li>
-      <li class="nav-item">
-          <a class="nav-link" routerLink="portafolio/articulos">Artículos</a>
+      <li class="nav-item pr-3">
+          <!--<a class="nav-link" routerLink="portafolio/articulos">Artículos</a>-->
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle itm" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Articulos
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenu3">
+            <button class="dropdown-item" routerLink="portafolio/articulos" type="button">Listar</button>
+            <button class="dropdown-item" routerLink="portafolio/articulos/upload" type="button">Crear</button>
+          </div>
+        </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" routerLink="portafolio/proyectos">Proyectos</a>
+            <!--<a class="nav-link" routerLink="portafolio/proyectos">Proyectos</a>-->
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle itm" type="button" id="dropdownMenu4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Proyectos
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu4">
+              <button class="dropdown-item" routerLink="portafolio/proyectos" type="button">Listar</button>
+              <button class="dropdown-item" routerLink="portafolio/proyectos/upload" type="button">Crear</button>
+            </div>
+          </div>
           </li>
     </ul>
   </nav>
