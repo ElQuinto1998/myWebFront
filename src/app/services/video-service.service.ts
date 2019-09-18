@@ -27,4 +27,9 @@ export class VideoServiceService {
     return this.http.get<Video>(this.URL_API + '/videos/' + id);
   }
 
+  likeVideo(id: string): Observable<String> {
+    // @ts-ignore
+    return this.http.post<String>(this.URL_API+ '/videos/'+ id +'/like');
+  }
+
 }

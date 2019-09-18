@@ -15,7 +15,7 @@
         </div>
       </div>
       <div class="card-footer d-flex justify-content-between align-items-center">
-        <button class="btn btn-success" id="btn-like">
+        <button (click)="like()" class="btn btn-success" id="btn-like">
           <i class="fa fa-thumbs-up"></i> Like
         </button>
         <p>
@@ -58,19 +58,26 @@
       </div>
     </li>
   </ul>
-  <div class="comment-main-level">
+  <button (click)="showCommentFor()" class="btn btn-success mb-3" id="btn-comment-form">
+    <i class="fa fa-comment"></i> Comment
+  </button>
+  <blockquote id="post-commet">
+  <div class="comment-main-level" >
     <div class="comment-box">
       <div class="comment-content">
         <div class="form-group shadow-textarea">
           <form [formGroup]="checkoutForm" (ngSubmit)="comentar(checkoutForm.value, video_id)">
             <div class="form-group">
-              <input type="text" class="form-control" formControlName="name" required placeholder="Name">
+              <input type="text" class="form-control" formControlName="name" placeholder="Name" required>
+              <small *ngIf="!checkoutForm.controls['name'].valid && checkoutForm.controls['name'].touched" class="alert">Name is required</small>
             </div>
             <div class="form-group">
-              <input type="email" class="form-control" formControlName="email" required="" placeholder="Email">
+              <input type="email" class="form-control" formControlName="email" placeholder="Email" required>
+              <small *ngIf="!checkoutForm.controls['email'].valid && checkoutForm.controls['email'].touched" class="alert">Email is required</small>
             </div>
             <div class="form-group">
-              <textarea formControlName="message" class="form-control" rows="2" required="" placeholder="Your Comment"></textarea>
+              <textarea formControlName="message" class="form-control" rows="2" placeholder="Your Comment" required></textarea>
+              <small *ngIf="!checkoutForm.controls['message'].valid && checkoutForm.controls['message'].touched" class="alert">Message is required</small>
             </div>
             <div class="form-group">
               <button type="submit" class="btn btn-success" id="btn-comment">
@@ -82,5 +89,6 @@
       </div>
     </div>
   </div>
+  </blockquote>
 </div>
 <!-- Comentarios -->
