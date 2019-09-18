@@ -62,8 +62,22 @@
     <div class="comment-box">
       <div class="comment-content">
         <div class="form-group shadow-textarea">
-          <textarea class="form-control z-depth-1" id="txtComent" rows="3" required placeholder="Escribe un comentario..."></textarea>
-          <button type="submit" class="btn btn-primary">Comentar</button>
+          <form [formGroup]="checkoutForm" (ngSubmit)="comentar(checkoutForm.value, video_id)">
+            <div class="form-group">
+              <input type="text" class="form-control" formControlName="name" required placeholder="Name">
+            </div>
+            <div class="form-group">
+              <input type="email" class="form-control" formControlName="email" required="" placeholder="Email">
+            </div>
+            <div class="form-group">
+              <textarea formControlName="message" class="form-control" rows="2" required="" placeholder="Your Comment"></textarea>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-success" id="btn-comment">
+                <i class="fa fa-comment"></i> Post
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
