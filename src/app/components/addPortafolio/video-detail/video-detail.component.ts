@@ -3,6 +3,8 @@ import { VideoServiceService } from '../../../services/video-service.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
 import {FormBuilder, Validators} from '@angular/forms';
+import * as moment from 'moment';
+import {el} from "@angular/platform-browser/testing/src/browser_util";
 
 // @ts-ignore
 @Component({
@@ -17,6 +19,8 @@ export class VideoDetailComponent implements OnInit {
   video_id: any;
   private sub: any;
   checkoutForm: any;
+  tiempoText: any;
+  tiempo: any;
 
   constructor(private toastr: ToastrService,
               private service: VideoServiceService,
@@ -117,5 +121,40 @@ export class VideoDetailComponent implements OnInit {
 
     return day + '/' + monthNames[monthIndex] + '/' + year;
 
+  }
+
+  getDays(fecha: Date){
+    let currentDate = moment(new Date());
+    let postDate = moment(new Date(fecha));
+
+
+    let second = currentDate.diff(postDate, 'seconds');
+    let minutes = currentDate.diff(postDate, 'minutes');
+    let hours = currentDate.diff(postDate, 'hours');
+    let days = currentDate.diff(postDate, 'days');
+    let months = currentDate.diff(postDate, 'months');
+    let years = currentDate.diff(postDate, 'years');
+
+    if(second > 0 && minutes === 0 && hours === 0 && days === 0 && months === 0 && years === 0){
+      this.tiempo = second;
+      this.tiempoText = "segundos";
+    }else if (minutes > 0 && hours === 0 && days === 0 && months === 0 && years === 0){
+      this.tiempo = minutes;
+      this.tiempoText = "minutos";
+    } else if(hours > 0 && days === 0 && months === 0 && years === 0){
+      this.tiempo = hours;
+      this.tiempoText = "horas";
+    }else if(days > 0 && months === 0 && years === 0){
+      this.tiempo = days;
+      this.tiempoText = "dias";
+    }else if(months > 0 && years === 0){
+      this.tiempo = months;
+      this.tiempoText = "meses";
+    }else {
+      this.tiempo = years;
+      this.tiempoText = "años";
+    }
+
+    return this.tiempo;
   }
 }
