@@ -1,9 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { VideoServiceService } from '../../../services/video-service.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
 import {FormBuilder, Validators} from '@angular/forms';
-import {el} from "@angular/platform-browser/testing/src/browser_util";
 
 // @ts-ignore
 @Component({
@@ -15,10 +14,9 @@ export class VideoDetailComponent implements OnInit {
 
   data: any = {};
   comts: any = false;
-  video_id: any = "gty";
+  video_id: any;
   private sub: any;
   checkoutForm: any;
-  URL_API = 'http://localhost:3000';
 
   constructor(private toastr: ToastrService,
               private service: VideoServiceService,
@@ -36,60 +34,88 @@ export class VideoDetailComponent implements OnInit {
   ngOnInit() {
 
     $('#post-commet').hide();
-
-
     this.sub = this.route.params.subscribe(params => {
       this.getVideoById(params['id']);
     });
 
-
   }
 
-  getVideoById(id: string){
+  getVideoById(id: string) {
+
     this.service.getVideoById(id).subscribe(data => {
       this.data = data;
       this.video_id = this.data.video._id;
-      if(this.data.comments.length > 0){
+      if (this.data.comments.length > 0) {
         this.comts = true;
       }
-    }, (error => {
+    }, (() => {
       this.toastr.error("Hubo un problema, intente mas tarde");
     }));
+
   }
 
   comentar(comment: any, id_video) {
 
-    console.log(this.checkoutForm);
-    if(this.checkoutForm.valid){
-      console.log("Comment: "+ JSON.stringify(comment));
-      console.log("id_video: "+id_video);
-      this.toastr.success("Has agregado un comentario");
-      console.log("Es valido: "+this.checkoutForm.valid);
-    }else {
+    if (this.checkoutForm.valid) {
+      this.service.comment(id_video, comment).subscribe(data => {
+        // @ts-ignore
+        this.toastr.success(data.message, "Ok", {timeOut: 3000});
+        this.ressetForm();
+        this.getVideoById(id_video);
+      });
+
+    } else {
       this.toastr.error("Todos los campos son requeridos", "Ops..", {timeOut: 3000});
-      console.log("Es valido: "+this.checkoutForm.valid);
+      console.log("Es valido: " + this.checkoutForm.valid);
     }
+
   }
 
-  like(){
+  like() {
+
     return this.service.likeVideo(this.data.video._id).subscribe(data => {
       // @ts-ignore
       $(".likes-count").text(data.likes);
-    }, (error => {
-      this.toastr.error("Hubo un problema, intente mas tarde");
+    }, (() => {
+      this.toastr.error("Hubo un problema, intente mas tarde", "Ops..", {timeOut: 3000});
     }));
+
   }
 
-  showCommentFor(){
+  showCommentFor() {
 
-      let estado = $("#post-commet").is(':visible');
-      if (!estado) {
-        $('#post-commet').slideToggle();
-        $("#btn-comment-form").attr("class", "btn btn-danger mb-3");
-      }else {
-        $("#btn-comment-form").attr("class", "btn btn-success mb-3");
-        $('#post-commet').hide("slow");
-      }
+    let estado = $("#post-commet").is(':visible');
+    if (!estado) {
+      $('#post-commet').slideToggle();
+      $("#btn-comment-form").attr("class", "btn btn-danger mb-3");
+    } else {
+      $("#btn-comment-form").attr("class", "btn btn-success mb-3");
+      $('#post-commet').hide("slow");
+    }
+
   }
 
+  ressetForm() {
+    this.checkoutForm.reset();
+    $('#post-commet').hide();
+  }
+
+  toFecha(date: Date) {
+
+    let datePost = new Date(date);
+
+    let monthNames = [
+      "January", "February", "March",
+      "April", "May", "June", "July",
+      "August", "September", "October",
+      "November", "December"
+    ];
+
+    let day = datePost.getDate();
+    let monthIndex = datePost.getMonth();
+    let year = datePost.getFullYear();
+
+    return day + '/' + monthNames[monthIndex] + '/' + year;
+
+  }
 }

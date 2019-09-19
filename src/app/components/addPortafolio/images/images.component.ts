@@ -12,4 +12,9 @@ export class ImagesComponent implements OnInit {
   ngOnInit() {
   }
 
+  showDetailImg() {
+
+    console.log("Mirando detalle de la imagen");
+
+  }
 }

@@ -32,4 +32,9 @@ export class VideoServiceService {
     return this.http.post<String>(this.URL_API+ '/videos/'+ id +'/like');
   }
 
+  comment(id: string, comment: any){
+    console.log("Comentario: "+comment);
+    return this.http.post<String>(this.URL_API+ '/videos/'+ id +'/comment', comment);
+  }
+
 }

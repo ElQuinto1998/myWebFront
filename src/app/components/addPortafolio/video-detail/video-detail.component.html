@@ -27,7 +27,7 @@
         </p>
         <p>
           <i class="fa fa-clock"></i>
-          {{data.video.timestamp}}
+          {{toFecha(data.video.timestamp)}}
         </p>
       </div>
     </div>
@@ -42,11 +42,11 @@
     <li *ngFor="let comment of data.comments">
       <div class="comment-main-level">
         <!-- Avatar -->
-        <div class="comment-avatar"><img src="https://image.freepik.com/vector-gratis/perfil-avatar-hombre-icono-redondo_24640-14044.jpg" alt=""></div>
+        <div class="comment-avatar"><img src="{{comment.avatar}}" alt=""></div>
         <!-- Contenedor del Comentario -->
         <div class="comment-box">
           <div class="comment-head">
-            <h6 class="comment-name by-author"><a href="http://creaticode.com/blog">Agustin Ortiz</a></h6>
+            <h6 class="comment-name by-author"><a href="http://creaticode.com/blog">{{comment.name}}</a></h6>
             <span>hace 20 minutos</span>
             <i class="fa fa-reply"></i>
             <i class="fa fa-heart"></i>
