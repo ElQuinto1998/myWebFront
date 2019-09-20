@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { VideoServiceService } from '../../../services/video-service.service';
+import { MultimediaServiceService } from '../../../services/multimedia-service.service';
 
 @Component({
   selector: 'app-video',
@@ -11,16 +11,16 @@ export class VideoComponent implements OnInit {
 
   data: any = [];
 
-  constructor(private toastr: ToastrService, private service: VideoServiceService) { }
+  constructor(private toastr: ToastrService, private service: MultimediaServiceService) { }
 
   ngOnInit() {
     this.getVideos();
   }
 
   getVideos(){
-    return this.service.getVideos().subscribe(data => {
+    return this.service.getVideos("vdo").subscribe(data => {
       this.data = data;
-    }, (error => {
+    }, (() => {
       this.toastr.error("Hubo un problema, intente mas tarde");
     }));
   }

@@ -1,10 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import { VideoServiceService } from '../../../services/video-service.service';
+import { MultimediaServiceService } from '../../../services/multimedia-service.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
 import {FormBuilder, Validators} from '@angular/forms';
 import * as moment from 'moment';
-import {el} from "@angular/platform-browser/testing/src/browser_util";
 
 // @ts-ignore
 @Component({
@@ -23,7 +22,7 @@ export class VideoDetailComponent implements OnInit {
   tiempo: any;
 
   constructor(private toastr: ToastrService,
-              private service: VideoServiceService,
+              private service: MultimediaServiceService,
               private route: ActivatedRoute,
               private formBuilder: FormBuilder) {
 
@@ -44,11 +43,11 @@ export class VideoDetailComponent implements OnInit {
 
   }
 
-  getVideoById(id: string) {
+  getVideoById(id_media: string) {
 
-    this.service.getVideoById(id).subscribe(data => {
+    this.service.getVideoById("vdo", id_media).subscribe(data => {
       this.data = data;
-      this.video_id = this.data.video._id;
+      this.video_id = this.data.file.id_media;
       if (this.data.comments.length > 0) {
         this.comts = true;
       }
@@ -58,14 +57,14 @@ export class VideoDetailComponent implements OnInit {
 
   }
 
-  comentar(comment: any, id_video) {
+  comentar(comment: any, id_media) {
 
     if (this.checkoutForm.valid) {
-      this.service.comment(id_video, comment).subscribe(data => {
+      this.service.comment(id_media, comment).subscribe(data => {
         // @ts-ignore
         this.toastr.success(data.message, "Ok", {timeOut: 3000});
         this.ressetForm();
-        this.getVideoById(id_video);
+        this.getVideoById(id_media);
       });
 
     } else {
@@ -77,7 +76,7 @@ export class VideoDetailComponent implements OnInit {
 
   like() {
 
-    return this.service.likeVideo(this.data.video._id).subscribe(data => {
+    return this.service.likeVideo(this.data.file.id_media).subscribe(data => {
       // @ts-ignore
       $(".likes-count").text(data.likes);
     }, (() => {

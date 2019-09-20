@@ -2,7 +2,7 @@
   <div class="col-md-8">
     <div class="card ">
       <div class="card-header d-flex justify-content-between align-items-center">
-        <h2>{{data.video.title}}</h2>
+        <h2>{{data.file.title}}</h2>
         <button class="btn btn-danger" routerLink="/portafolio/videos" id="btn-delete">
           <i class="fa fa-times"></i>
         </button>
@@ -19,15 +19,15 @@
           <i class="fa fa-thumbs-up"></i> Like
         </button>
         <p>
-          <span class="likes-count">{{data.video.likes}}</span>
+          <span class="likes-count">{{data.file.likes}}</span>
           <i class="fa fa-heart"></i>
         </p>
         <p>
-          <i class="fa fa-eye"></i> {{data.video.views}}
+          <i class="fa fa-eye"></i> {{data.file.views}}
         </p>
         <p>
           <i class="fa fa-clock"></i>
-          {{toFecha(data.video.timestamp)}}
+          {{toFecha(data.file.timestamp)}}
         </p>
       </div>
     </div>

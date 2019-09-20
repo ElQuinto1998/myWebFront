@@ -1,11 +1,11 @@
 <h3>Videos</h3>
 <ul class="list-unstyled video-list-thumbs row">
-	<li class="col-lg-3 col-sm-4 col-xs-6" *ngFor="let video of data.videos">
-		<a routerLink="detail/{{video._id}}">
-			<img src="https://www.infobae.com/new-resizer/L6tnxv_o_3Q534p6W9rSbFe9Iys=/750x0/filters:quality(100)/s3.amazonaws.com/arc-wordpress-client-uploads/infobae-wp/wp-content/uploads/2019/04/03073236/festejo-barcelona-arturo-vidal-1920-3.jpg" alt="Barca" class="img-responsive" height="130px" />
+	<li class="col-lg-3 col-sm-4 col-xs-6" *ngFor="let video of data.files">
+		<a routerLink="detail/{{video.id_media}}">
+			<img src="https://thumbs.dreamstime.com/b/programaci%C3%B3n-cifrando-vector-plano-del-concepto-46933117.jpg" alt="Video" class="img-responsive" height="130px" />
 			<h2>{{video.title}}</h2>
 			<span class="glyphicon glyphicon-play-circle"></span>
-			<span class="duration">03:15</span>
+			<span class="duration"><i class="fa fa-eye"></i></span>
 		</a>
 	</li>
 </ul>
