@@ -1,11 +1,60 @@
 <h3>Videos</h3>
-<ul class="list-unstyled video-list-thumbs row">
-	<li class="col-lg-3 col-sm-4 col-xs-6" *ngFor="let video of data.files">
-		<a routerLink="detail/{{video.id_media}}">
-			<img src="https://thumbs.dreamstime.com/b/programaci%C3%B3n-cifrando-vector-plano-del-concepto-46933117.jpg" alt="Video" class="img-responsive" height="130px" />
-			<h2>{{video.title}}</h2>
-			<span class="glyphicon glyphicon-play-circle"></span>
-			<span class="duration"><i class="fa fa-eye"></i></span>
-		</a>
-	</li>
-</ul>
+<div class="row">
+  <div class="col-md-8">
+    <ul class="list-unstyled video-list-thumbs row">
+      <li class="col-lg-3 col-sm-4 col-xs-6" *ngFor="let video of data.files">
+        <a routerLink="detail/{{video.id_media}}">
+          <img src="https://thumbs.dreamstime.com/b/programaci%C3%B3n-cifrando-vector-plano-del-concepto-46933117.jpg" alt="Video" class="img-responsive" height="130px" />
+          <h2>{{video.title}}</h2>
+          <span class="glyphicon glyphicon-play-circle"></span>
+          <span class="duration"><i class="fa fa-eye"></i></span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-4" id="report">
+    <div class="card mb-2">
+      <div class="card-header text-white">
+        <h5>
+          <i class="fa fa-bar-chart"></i> Stats
+        </h5>
+      </div>
+      <div class="card-body">
+        <p><i class="fa fa-video-camera"></i> Videos: 4</p>
+        <p><i class="fa fa-eye"></i> Views: {{data.views}}</p>
+        <p><i class="fa fa-heart"></i> Likes: {{data.likes}}</p>
+      </div>
+    </div>
+    <div class="card mb-2">
+
+      <div class="card-header text-white">
+        <h5>
+          <i class="fa fa-fire"></i> Most Popular
+        </h5>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-4">
+            <a routerLink="detail/gbv45675">
+              <img src="https://thumbs.dreamstime.com/b/programaci%C3%B3n-cifrando-vector-plano-del-concepto-46933117.jpg" alt="video" class="w-100 h-100 image-thumbnail">
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a href="">
+              <img src="https://thumbs.dreamstime.com/b/programaci%C3%B3n-cifrando-vector-plano-del-concepto-46933117.jpg" alt="video" class="w-100 h-100 image-thumbnail">
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a href="">
+              <img src="https://thumbs.dreamstime.com/b/programaci%C3%B3n-cifrando-vector-plano-del-concepto-46933117.jpg" alt="video" class="w-100 h-100 image-thumbnail">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

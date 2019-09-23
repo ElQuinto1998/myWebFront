@@ -67,3 +67,11 @@
 		margin: 8px 0 0;
 	}
 }
+
+#report{
+  color: black;
+}
+
+.card-header{
+  background-color: rgba(0, 0, 0, 0.9);
+}

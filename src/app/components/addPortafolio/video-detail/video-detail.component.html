@@ -2,15 +2,17 @@
   <div class="col-md-8">
     <div class="card ">
       <div class="card-header d-flex justify-content-between align-items-center">
-        <h2>{{data.file.title}}</h2>
+        <h2 *ngIf="data.file">{{data.file.title}}</h2>
         <button class="btn btn-danger" routerLink="/portafolio/videos" id="btn-delete">
           <i class="fa fa-times"></i>
         </button>
       </div>
       <div class="card-body">
         <div class="text-center">
-          <video width="765" height="450" loop autoplay controls style="padding-bottom: 5px">
-            <source src="https://pixabay.com/es/videos/download/video-2317_source.mp4" type="video/mp4">
+          <video width="765" height="450" controls autoplay="autoplay" style="padding-bottom: 5px">
+            <source *ngIf="data.file" src="{{data.file.filename}}" type="video/mp4">
+            <source *ngIf="data.file" src="{{data.file.filename}}" type="video/mkv">
+            Tu navegador no soporta vídeo.
           </video>
         </div>
       </div>
@@ -18,77 +20,85 @@
         <button (click)="like()" class="btn btn-success" id="btn-like">
           <i class="fa fa-thumbs-up"></i> Like
         </button>
-        <p>
+        <p *ngIf="data.file">
           <span class="likes-count">{{data.file.likes}}</span>
           <i class="fa fa-heart"></i>
         </p>
-        <p>
+        <p *ngIf="data.file">
           <i class="fa fa-eye"></i> {{data.file.views}}
         </p>
-        <p>
+        <p *ngIf="data.file">
           <i class="fa fa-clock"></i>
           {{toFecha(data.file.timestamp)}}
         </p>
       </div>
     </div>
+    <!-- Comentarios -->
+    <div class="comments-container">
+      <h5>Comentarios</h5>
+      <p *ngIf="!comts">- Sin comentarios</p>
+      <ul id="comments-list" class="comments-list" *ngIf="comts">
+        <li *ngFor="let comment of data.comments">
+          <div class="comment-main-level">
+            <!-- Avatar -->
+            <div class="comment-avatar"><img src="{{comment.avatar}}" alt=""></div>
+            <!-- Contenedor del Comentario -->
+            <div class="comment-box">
+              <div class="comment-head">
+                <h6 class="comment-name by-author"><a href="http://creaticode.com/blog">{{comment.name}}</a></h6>
+                <span>hace {{getDays(comment.timestamp)}} {{tiempoText}}</span>
+                <i class="fa fa-reply"></i>
+                <i class="fa fa-heart"></i>
+              </div>
+              <div class="comment-content">
+                {{comment.message}}
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <button (click)="showCommentFor()" class="btn btn-success mb-3" id="btn-comment-form">
+        <i class="fa fa-comment"></i> Comment
+      </button>
+      <blockquote id="post-commet">
+        <div class="comment-main-level">
+          <div class="comment-box">
+            <div class="comment-content">
+              <div class="form-group shadow-textarea">
+                <form [formGroup]="checkoutForm" (ngSubmit)="comentar(checkoutForm.value, video_id)">
+                  <div class="form-group">
+                    <input type="text" class="form-control" formControlName="name" placeholder="Name" required>
+                    <small *ngIf="!checkoutForm.controls['name'].valid && checkoutForm.controls['name'].touched"
+                           class="alert">Name is required
+                    </small>
+                  </div>
+                  <div class="form-group">
+                    <input type="email" class="form-control" formControlName="email" placeholder="Email" required>
+                    <small *ngIf="!checkoutForm.controls['email'].valid && checkoutForm.controls['email'].touched"
+                           class="alert">Email is required
+                    </small>
+                  </div>
+                  <div class="form-group">
+                    <textarea formControlName="message" class="form-control" rows="2" placeholder="Your Comment"
+                              required></textarea>
+                    <small *ngIf="!checkoutForm.controls['message'].valid && checkoutForm.controls['message'].touched"
+                           class="alert">Message is required
+                    </small>
+                  </div>
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-success" id="btn-comment">
+                      <i class="fa fa-comment"></i> Post
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </blockquote>
+    </div>
+    <!-- Comentarios -->
   </div>
 </div>
 
-<!-- Comentarios -->
-<div class="comments-container">
-  <h5>Comentarios</h5>
-  <p *ngIf="!comts">- Sin comentarios</p>
-  <ul id="comments-list" class="comments-list" *ngIf="comts">
-    <li *ngFor="let comment of data.comments">
-      <div class="comment-main-level">
-        <!-- Avatar -->
-        <div class="comment-avatar"><img src="{{comment.avatar}}" alt=""></div>
-        <!-- Contenedor del Comentario -->
-        <div class="comment-box">
-          <div class="comment-head">
-            <h6 class="comment-name by-author"><a href="http://creaticode.com/blog">{{comment.name}}</a></h6>
-            <span>hace {{getDays(comment.timestamp)}} {{tiempoText}}</span>
-            <i class="fa fa-reply"></i>
-            <i class="fa fa-heart"></i>
-          </div>
-          <div class="comment-content">
-            {{comment.message}}
-          </div>
-        </div>
-      </div>
-    </li>
-  </ul>
-  <button (click)="showCommentFor()" class="btn btn-success mb-3" id="btn-comment-form">
-    <i class="fa fa-comment"></i> Comment
-  </button>
-  <blockquote id="post-commet">
-  <div class="comment-main-level" >
-    <div class="comment-box">
-      <div class="comment-content">
-        <div class="form-group shadow-textarea">
-          <form [formGroup]="checkoutForm" (ngSubmit)="comentar(checkoutForm.value, video_id)">
-            <div class="form-group">
-              <input type="text" class="form-control" formControlName="name" placeholder="Name" required>
-              <small *ngIf="!checkoutForm.controls['name'].valid && checkoutForm.controls['name'].touched" class="alert">Name is required</small>
-            </div>
-            <div class="form-group">
-              <input type="email" class="form-control" formControlName="email" placeholder="Email" required>
-              <small *ngIf="!checkoutForm.controls['email'].valid && checkoutForm.controls['email'].touched" class="alert">Email is required</small>
-            </div>
-            <div class="form-group">
-              <textarea formControlName="message" class="form-control" rows="2" placeholder="Your Comment" required></textarea>
-              <small *ngIf="!checkoutForm.controls['message'].valid && checkoutForm.controls['message'].touched" class="alert">Message is required</small>
-            </div>
-            <div class="form-group">
-              <button type="submit" class="btn btn-success" id="btn-comment">
-                <i class="fa fa-comment"></i> Post
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-  </blockquote>
-</div>
-<!-- Comentarios -->
+

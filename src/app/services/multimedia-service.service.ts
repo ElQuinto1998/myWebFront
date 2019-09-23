@@ -23,6 +23,10 @@ export class MultimediaServiceService {
     return this.http.get<Video>(this.URL_API + '/multimedia/' + type_media, this.httpOptions);
   }
 
+  getPoularVideos(type_media: string): Observable<Video> {
+    return this.http.get<Video>(this.URL_API + '/multimedia/' + type_media + '/popular', this.httpOptions);
+  }
+
   getVideoById(type_media: string, id_media: string): Observable<Video> {
     return this.http.get<Video>(this.URL_API + '/multimedia/' + type_media + '/' + id_media);
   }
